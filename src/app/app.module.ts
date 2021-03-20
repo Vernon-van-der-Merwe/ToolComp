@@ -8,6 +8,7 @@ import { HeaderComponent } from './pages/home/header/header.component';
 import { FeaturedComponent } from './pages/home/featured/featured.component';
 import { InfoOneComponent } from './pages/home/info-one/info-one.component';
 import { InfoTwoComponent } from './pages/home/info-two/info-two.component';
+import { ProductCardComponent } from './shared/components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InfoTwoComponent } from './pages/home/info-two/info-two.component';
     HeaderComponent,
     FeaturedComponent,
     InfoOneComponent,
-    InfoTwoComponent
+    InfoTwoComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
