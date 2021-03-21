@@ -1,4 +1,5 @@
 const $ = require("cheerio");
+const Logger = require("firebase-functions").logger;
 
 function parseEvetechPrices(response) {
   let ProductList = [];
@@ -29,4 +30,24 @@ function parseEvetechPrices(response) {
   return ProductList;
 }
 
-module.exports = { parseEvetechPrices };
+function parseTakealotProduct(response) {
+  let parsedResponse = JSON.parse(response);
+  Logger.log(parsedResponse);
+  let Product = {
+    pagelink: parsedResponse.desktop_href,
+    title: parsedResponse.core.title,
+    rating: parsedResponse.core.star_rating,
+    price:
+      parsedResponse.enhanced_ecommerce_detail.ecommerce.detail.products[0]
+        .price,
+    inStock: parsedResponse.stock_availability.status,
+    description: parsedResponse.description,
+    imageUrls: parsedResponse.gallery.images,
+  };
+  return Product;
+}
+
+module.exports = {
+  parseEvetechPrices,
+  parseTakealotProduct,
+};

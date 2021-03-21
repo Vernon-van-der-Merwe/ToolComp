@@ -13,4 +13,14 @@ router.get("/evetech", async (req, res) => {
     });
 });
 
+router.get("/takealot", async (req, res) => {
+  productsService
+    .getTakealotProductinfo(req.body)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 module.exports = router;

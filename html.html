@@ -1,0 +1,23 @@
+"
+<!DOCTYPE html>\n<html lang=\"en\">\n
+
+<head>\n
+  <meta charset=\"utf-8\">\n<title>takealot.com</title>\n
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no\">\n
+  <meta http-equiv=\"cache-control\" content=\"max-age=31536000\">\n
+  <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/apple-touch-icon.png\">\n
+  <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\">\n
+  <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/favicon-16x16.png\">\n
+  <link rel=\"manifest\" href=\"/site.webmanifest\">\n
+  <link rel=\"mask-icon\" href=\"/safari-pinned-tab.svg\" color=\"#0b79bf\">\n
+  <meta name=\"msapplication-TileColor\" content=\"#0b79bf\">\n
+  <meta name=\"theme-color\" content=\"#ffffff\">\n
+</head>\n
+
+<body id=\"body\">\n<div class=\"sf\" id=\"shopfront-app\"></div>\n
+  <script>\n    var url, file, domain = window.location.hostname.split('.').splice(1).join('.'), protocol = window.location.protocol; \n    var head = document.getElementsByTagName('head')[0]; \n    var isKubernetes = domain.indexOf('kubernetes.env') > -1; \n\n    function createLink(rel, subdomain, crossOrigin, as, file) { \n        var link = document.createElement('link'); \n        var href = protocol + \"//\" + subdomain +\".\" + domain;\n        link.rel = rel;\n\n        if (crossOrigin === undefined) crossOrigin = true;\n        if (as === undefined) as = \"\";\n        if (file === undefined) file = \"\";\n\n        if (crossOrigin) {\n            link.crossOrigin = \"\";\n        }\n\n        if (as.length > 0) {\n            link.as = as;\n        }\n\n        if (file.length > 0) {\n            link.href = href + file;\n        } else {\n            link.href = href;\n        }\n\n        return link\n    }\n\n    var shopfrontLink = createLink('preconnect', 'shopfront');\n    var mediaLink = createLink('preconnect', 'media');\n    var apiLink = createLink('preconnect', 'api');\n    var preloadLink = createLink('preload', 'shopfront', false, 'script', (\"/static/js/app-loader.js?v=\" + Date.now()));;\n\n    if (isKubernetes) {\n        preloadLink = createLink('preload', 'shopfront', false, 'script', (\"/static/js/manifest-loader.js?v=\" + Date.now()));\n    }\n\n    head.appendChild(preloadLink);\n    head.appendChild(mediaLink);\n    head.appendChild(shopfrontLink);\n    head.appendChild(apiLink);\n\n\n    if (isKubernetes) {\n        url = 'https://shopfront.kubernetes.env:3000';\n        file = \"/static/js/manifest-loader.js?v=\" + Date.now();\n    } else {\n        url = protocol + \"//shopfront.\" + domain;\n        file = \"/static/js/app-loader.js?v=\" + Date.now();\n    }\n\n    var script = document.createElement('script');\n    script.type = 'text/javascript';\n    script.onload = function() {\n        window.loadShopfront(url);\n    };\n    script.src = url + file;\n\n    head.appendChild(script);\n</script>
+  \n
+</body>\n
+
+</html>\n"
+}
