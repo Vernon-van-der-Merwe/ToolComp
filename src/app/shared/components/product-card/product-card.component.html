@@ -1,0 +1,23 @@
+<div class="card mb-5" style="width: 18rem">
+  <div class="card-body">
+    <img src="/assets/img/pr-bosch-toolkit.png" class="card-image" alt="" />
+    <h5 class="card-title">{{ product.title }}</h5>
+    <div class="container">
+      <div class="row">
+        <div class="col rating-label">
+          <div class="star-widget">
+            <span class="fa fa-star"></span>
+            <label for="rate-5" class="fas fa-star">
+              {{ product.rating }}</label
+            >
+          </div>
+        </div>
+        <div class="col price-label">R {{ product.price }}</div>
+      </div>
+      <span class="stock-label">
+        <p>{{ product.stockCount }} items left</p>
+      </span>
+    </div>
+    <a href="{{ product.pageLink }}" class="btn btn-primary">Buy Now</a>
+  </div>
+</div>
