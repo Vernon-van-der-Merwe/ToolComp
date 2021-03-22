@@ -6,11 +6,11 @@ function getEvetechProductinfo(body) {
   return new Promise(async (resolve, reject) => {
     try {
       let response = await request(body.url);
-      let products = ext.parseEvetechPrices(response);
+      let products = ext.parseEvetechProducts(response);
       resolve(products);
     } catch (error) {
       Logger.info(error, { structuredData: true });
-      reject("error");
+      reject(error);
     }
   });
 }

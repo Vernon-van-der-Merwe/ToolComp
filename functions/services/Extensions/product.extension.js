@@ -1,7 +1,7 @@
 const $ = require("cheerio");
 const Logger = require("firebase-functions").logger;
 
-function parseEvetechPrices(response) {
+function parseEvetechProducts(response) {
   let ProductList = [];
   const prices = $(".price", response)
     .text()
